@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>用户信息</title>
+    <link rel="shortcut icon" href="/static/hotel.png" type="image/x-icon" />
+<style>
+body{
+    background-color: #f1f1f1;
+}
+#title div{
+    float: right;
+    padding-top:10px;
+}
+#title div p{
+    float: right;
+    margin-right:30px;
+    margin-top:8px;
+    padding: 4px;
+    border:1px solid white;
+    font-weight: bold;
+    border-radius: 8px;
+    color:white;
+    background-color:#99CCCC;
+}
+#title{
+    height:80px;
+    border-bottom: 2px solid black;
+}
+#title a{
+    float: left;
+    text-decoration: none;
+    margin-top:8px;
+    padding: 2px;
+    font-weight: bold;
+    border-radius: 20px;
+    color:black;
+}
+#title a.active {
+    border: black;
+    color: white;
+}
+
+#title a:hover:not(.active) {
+    color:#CC0033;
+    border:2px solid black;
+}
+#title div a{
+    float: right;
+    margin-right:30px;
+    margin-top:8px;
+    padding: 2px;
+    border:1px solid white;
+    font-weight: bold;
+    border-radius: 2px;
+    color:white;
+    background-color:red;
+}
+#title div a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#title div a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+#content{
+    text-align: center;
+    margin-top:30px;
+    padding-top: 18px;
+    width:800px;
+    height:600px;
+    border-radius: 10px;
+    border: 4px solid #009966;
+}
+
+#errdiv{
+    text-align: center;
+    font-size:15pt;
+    font-weight: bold;
+    color:red;
+}
+#info{
+    width:500px;
+    height:400px;
+    padding: 20px;
+}
+#info div{
+    text-align: left;
+    margin-top: 20px;
+    padding: 10px;
+    padding-bottom: 20px;
+    width:400px;
+    margin-left: 200px;
+    margin-right:100px;
+    border:2px solid #0099CC;
+}
+#info p{
+    display: inline;
+    color:red;
+    font-weight: bold;
+    font-size: 12pt;
+}
+#info span{
+    color:black;
+    font-weight: bold;
+    font-size:12pt;
+    margin-left: 60px;
+    padding: 5px;
+    border-radius: 5px;
+    border:1px solid red;
+}
+
+</style>
+<script type="text/javascript">
+
+</script>
+<body>
+
+<div id="title">
+    <font size='20pt'><a href="{% url 'index' %}">中和营镇人和缘旅社信息系统</a></font>
+    {% ifnotequal request.session.sessionName None %}
+        <div>
+        <p>{{request.session.sessionTel}}</p>
+        <p>{{request.session.sessionName}}</p>
+        <a href="#exit" id="btExit">退出</a>
+        </div>
+    {% endifnotequal %}
+</div>
+
+<center>
+<div id="content">
+    {% ifequal person None%}
+        <div id="errdiv">
+            您的请求信息不正确！
+        </div>
+    {% else %}
+        <div id="info">
+            <div>
+                <p>名字:</p><br/><br/>
+                <span>{{person.name}}</span>
+            </div>
+            <div>
+                <p>电话：</p><br/><br/>
+                <span>{{person.tel}}</span>
+            </div>
+            <div>
+                <p>邮箱：</p><br/><br/>
+                <span>{{person.email}}</span>
+            </div>
+            <div>
+                <p>地址：</p><br/><br/>
+                <span>{{person.address}}</span>
+            </div>
+        </div>
+    {% endifequal %}
+</div>
+</center>
+
+</body>
+</head>

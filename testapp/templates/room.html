@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>人和缘宾馆</title> 
+    <link rel="shortcut icon" href="/static/hotel.png" type="image/x-icon" />
+<style>
+body{
+    background-color: #f1f1f1;
+}
+textarea{
+    resize: none;
+}
+#menu{
+    float: left;
+}
+#menu ul {
+    text-align: center;
+    list-style-type: none;
+    margin-top:20px;
+    margin-left:50px;
+    padding-top: 20px;
+    width: 760px;
+    height:40px;
+    background-color: #99CC99;
+}
+#menu li{
+    display: inline;
+}
+#menu li a {
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+#menu li {
+    text-align: center;
+    font-style: bold;
+    font-size: 15pt;
+    border-left:2px solid white;
+}
+
+#menu li:last-child {
+    border-bottom: none;
+}
+
+#menu li a.active {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 12px;
+}
+
+#menu li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+    border-radius: 12px;
+}
+#title div{
+    float: right;
+    padding-top:10px;
+}
+#title div p{
+    float: right;
+    margin-right:30px;
+    margin-top:8px;
+    padding: 4px;
+    border:1px solid white;
+    font-weight: bold;
+    border-radius: 8px;
+    color:white;
+    background-color:#99CCCC;
+}
+#title{
+    width:1200px;
+    height:80px;
+    border-bottom: 2px solid black;
+}
+
+#title a{
+    float: left;
+    text-decoration: none;
+    margin-top:8px;
+    padding: 2px;
+    font-weight: bold;
+    border-radius: 20px;
+    color:black;
+}
+#title a.active {
+    border: black;
+    color: white;
+}
+
+#title a:hover:not(.active) {
+    color:#CC0033;
+    border:2px solid black;
+}
+
+#title div a{
+    float: right;
+    text-decoration: none;
+    margin-right:30px;
+    margin-top:8px;
+    padding: 4px;
+    border:1px solid white;
+    font-weight: bold;
+    border-radius: 6px;
+    color:white;
+    background-color:red;
+}
+#title div a.active {
+    background-color: #CC9999;
+    color: white;
+}
+
+#title div a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+#login{
+    float: right;
+    text-align: center;
+    width: 260px;
+    margin-top:10px;
+    margin-right:20px;
+    border: 1px solid white;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#login input{
+    margin-bottom: 10px;
+}
+#post{
+    float: right;
+    text-align: center;
+    margin-top: 20px;
+    margin-right:70px;
+    padding: 10px;
+    padding-top:20px;
+    border:2px solid red;
+    font-weight:bold;
+    font-size:12pt;
+    color:black;
+    width:130px;
+    height:40px;
+    border-radius: 20px;
+}
+#post div{
+    display: inline;
+    width:20px;
+    height:20px;
+    background-color:red;
+    font-weight: bold;
+    font-size:14pt;
+    color:white;
+    border:2px solid red;
+    border-radius: 10px;
+}
+
+#content{
+    float: left;
+    width: 800px;
+    height:900px;
+    margin-top:10px;
+    margin-left:50px;
+    padding-bottom:100px;
+    background-color: #CCCC99;
+}
+.item{
+    width:600px;
+    height:200px;
+    margin-left:100px;
+    margin-top:20px;
+    background-color:#CCCC99;
+    border: 1px solid white;
+}
+
+.info{
+    float: left;
+    margin-left:15px;
+    width: 300px;
+    height: 180px;
+    font-weight: bold;
+}
+.info p{
+    display: inline;
+    border-radius: 5px;
+    border: 1px solid white;
+    padding: 3px;
+    color: white;
+    font-size: 12pt;
+    font-weight: bold;
+    display:inline;
+}
+#content div img{
+    float: right;
+    margin-top:8px;
+    margin-right:10px;
+    width:200px;
+    height: 180px;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+#page{
+    width: 600px;
+    height:40px;
+    margin-left:100px;
+    margin-top: 25px;
+    padding-bottom: 15px;
+    /*border: 1px solid white;
+    background-color:#CCCCCC;*/
+}
+#right{
+    display: inline;
+    float: right;
+    margin-top:10px;
+    margin-right:20px;
+    width: 260px;
+    height:640px;
+    background-color:#99CCCC;
+}
+.ritem{
+    width:200px;
+    height:120px;
+    margin-left:30px;
+    margin-top:20px;
+    background-color:#99CCCC;
+    border: 1px solid white;
+}
+.ritem p{
+    display: inline;
+    padding:1px;
+    color:#990033;
+    font-weight: bold;
+    font-size: 8pt;
+}
+.ritem img{
+    float: right;
+    width:70px;
+    height: 70px;
+}
+#rpage{
+    width: 220px;
+    height:30px;
+    margin-top: 10px;
+    margin-left:10px;
+    padding-bottom: 20px;
+    padding-top: 5px;
+    /*border: 1px solid white;
+    background-color:#CCCCCC;*/
+}
+
+.page ul {
+    text-align: center;
+    list-style-type: none;
+}
+.page li{
+    display: inline
+}
+.page li a {
+    color: #000;
+    text-decoration: none;
+    padding: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.page li {
+    text-align: center;
+    font-style: bold;
+    font-size: 15pt;
+    padding-left: 6px;
+}
+
+.page li:last-child {
+    border-bottom: none;
+}
+
+.page li a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.page li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+#foot{
+    float: left;
+    text-align: center;
+    width:800px;
+    padding-bottom: 20px;
+    margin-left:50px;
+    margin-top:10px;
+    height:60px;
+    border:1px solid gray;
+    background-color:black;
+}
+#foot p{
+    font-weight: bold;
+    font-size:12pt;
+    color:white;
+}
+
+.fitem{
+    width:600px;
+    height:200px;
+    margin-left:100px;
+    margin-top:20px;
+    background-color:#CCCC99;
+    border: 1px solid white;
+}
+.fitem img{
+    float: right;
+    margin-top:8px;
+    margin-right:10px;
+    width:180px;
+    height: 180px;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+.finfo{
+    float: left;
+    margin-left:15px;
+    width: 330px;
+    height: 180px;
+    font-weight: bold;
+}
+.finfo p{
+    display: inline;
+    border-radius: 5px;
+    border: 1px solid white;
+    padding: 3px;
+    color: white;
+    font-size: 12pt;
+    font-weight: bold;
+    display:inline;
+}
+
+.mitem{
+    width:600px;
+    height:200px;
+    margin-left:100px;
+    margin-top:20px;
+    background-color:#CCCC99;
+    border: 1px solid white;
+}
+.mitem img{
+    float: right;
+    margin-top:8px;
+    margin-right:10px;
+    width:200px;
+    height: 180px;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+.minfo{
+    float: left;
+    margin-left:15px;
+    width: 300px;
+    height: 180px;
+    font-weight: bold;
+}
+.minfo p{
+    display: inline;
+    border-radius: 5px;
+    border: 1px solid white;
+    padding: 3px;
+    color: white;
+    font-size: 12pt;
+    font-weight: bold;
+    display:inline;
+}
+
+#abdiv{
+    text-align: center;
+    width:750px;
+    height:600px;
+    margin: 10px;
+    background-color: #CCCC99;
+    color:black;
+    padding-top:50px;
+    font-weight: bold;
+    font-size:12pt;
+}
+
+#abdiv div{
+    border:1px solid white;
+    width:500px;
+    height:100px;
+    background-color: #339999;
+    margin-top: 20px;
+    margin-left: 120px;
+    margin-bottom:20px;
+    padding:10px;
+}
+#abdiv p{
+    display: inline;
+    border-radius: 5px;
+    border: 1px solid white;
+    padding: 5px;
+    color: white;
+    font-size: 12pt;
+    font-weight: bold;
+    display:inline;
+}
+
+#ok{
+    height:1140px;
+    width:1200px;
+}
+
+</style>
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+      // 顶部的菜单栏
+      // 获取房间信息
+      $("#room").click(function(){
+        $.get("/room/",{"curpg":"1"}, function(ret){
+            $('#content').html(ret);
+        })
+      }); 
+      
+      //获取菜品信息
+      $("#food").click(function(){
+        $.get("/food/",{"curpg":"1"}, function(ret){
+            $('#content').html(ret);
+        })
+      });
+
+      //获取交易信息
+      $("#mon").click(function(){
+        $.get("/mon/",{"curpg":"1"}, function(ret){
+            $('#content').html(ret);
+        })
+      });
+
+      //获取about页面信息
+      $("#about").click(function(){
+        $.get("/about/", function(ret){
+            $('#content').html(ret);
+        })
+      });
+
+      // 分页事件的处理
+      // ----------------- 没有作用
+      $(".rpgitem").click(function(){});
+      $(".fpgitem").click(function(){
+        //$.get("/food/",{"fcurpg":$(this).text()}, function(ret){
+        //    $('#content').html(ret);
+        //})
+      });
+      $(".mpgitem").click(function(){});
+      // -----------------
+
+      // 登录
+      $("#btLoginSure").click(function(){
+        $.ajax({
+            type:"POST",
+            url:"{% url 'login' %}",
+            datatype:"json",
+            data:{
+                'userName':$("#userName").val(),
+                'userPswd':$("#userPswd").val()
+            },
+            success:function(data){
+                if(data.ifSuccess == 'true'){
+                    alert("登录成功！");
+                    window.location.href = "{% url 'index' %}";
+                }else{
+                    errmsg = data.errMsg;
+                    alert("登录失败！"+errmsg);
+                    $("#errMsg").html = "<font color='red'>"+errmsg+"</font>";
+                }
+            },
+        });
+      });
+
+      // 退出
+      $("#btExit").click(function(){
+        $.get("{% url 'exit' %}",function(data){
+            if(data.isok == 'true'){
+                alert('退出成功!');
+                window.location.href="{% url 'index' %}";
+            }else{
+                alert('退出失败！强制退出..');
+                window.location.href="{% url 'index' %}";
+            }
+        })
+      });
+
+      // 注册
+      $("#sign").click(function(){
+        window.location.href="{% url 'sign' %}";
+      });
+
+
+    });
+
+    //更新用户信息的点击操作
+    //function btUserMod(tel){
+     function userMod(tel){
+        $(document).ready(function(){
+          window.location.href="{% url 'sign' %}?tel="+tel;
+        });
+    }
+
+</script>
+<script type="text/javascript">
+    function divon(name){
+        ele = document.getElementById(name);
+        ele.style.backgroundColor="#339999";
+        ele.style.color="white";
+    }
+    function divlev(name){
+        ele = document.getElementById(name);
+        ele.style.backgroundColor="#CCCC99";
+        ele.style.color="black";
+    }
+    function divclick(name){
+        alert("you click!");
+    }
+
+    function rdivon(name){
+        ele = document.getElementById(name);
+        ele.style.backgroundColor="#339999";
+        ele.style.color="white";
+    }
+    function rdivlev(name){
+        ele = document.getElementById(name);
+        ele.style.backgroundColor="#99CCCC";
+        ele.style.color="black";
+    }
+    function rdivclick(name){
+        alert("you click!");
+    }
+
+    //改变导航栏中的状态
+    function change(name){
+        var names = ["room","food","mon","about"];
+        for(var i=0 ; i<names.length ; i++){
+            ele = document.getElementById(names[i]);
+            if(names[i] == name){
+                ele.style.borderBottom = "2px solid red";
+            }else{
+                ele.style.borderBottom = "0px";
+            }
+        }
+    }
+
+    // food 显示控制
+    function fdivon(name){
+        ele = document.getElementById(name);
+        ele.style.backgroundColor="#339999";
+        ele.style.color="white";
+    }
+    function fdivlev(name){
+        ele = document.getElementById(name);
+        ele.style.backgroundColor="#CCCC99";
+        ele.style.color="black";
+    }
+    function fdivclick(name){
+        alert("food="+name)
+    }
+
+    // money 显示控制
+    function mdivon(name){
+        ele = document.getElementById(name);
+        ele.style.backgroundColor="#339999";
+        ele.style.color="white";
+    }
+    function mdivlev(name){
+        ele = document.getElementById(name);
+        ele.style.backgroundColor="#CCCC99";
+        ele.style.color="black";
+    }
+    function mdivclick(name){
+        alert("mon="+name);
+    }
+
+    //分页控制
+    function pgclick(type,pg){
+        $(document).ready(function(){
+          $.get(type,{"curpg":pg}, function(ret){
+              $('#content').html(ret);
+          })
+        });
+    }
+
+    //侧栏分页
+    function spgclick(type,pg){
+        $(document).ready(function(){
+          $.get(type,{"curpg":pg}, function(ret){
+              $('#right').html(ret);
+          })
+        });
+    }
+
+    //about 页面中的控制
+    function abover(name){
+        ele = document.getElementById(name);
+        elep = ele.getElementsByTagName('p')[0];
+        ele.style.backgroundColor = "white";
+        ele.style.color = "red";
+        elep.style.border = "1px solid black";
+        elep.style.color = "black";
+    }
+    function ablev(name){
+        ele = document.getElementById(name);
+        elep = ele.getElementsByTagName('p')[0];
+        ele.style.backgroundColor = "#339999";
+        ele.style.color = "white";
+        elep.style.border = "1px solid white";
+    }
+
+    //发布消息的控制
+    function poston(id){
+        ele = document.getElementById(id);
+        ele.style.backgroundColor = "#99CCCC";
+        ele.style.color = "white";
+    }
+    function postlev(id){
+        ele = document.getElementById(id);
+        ele.style.backgroundColor = "#f1f1f1";
+        ele.style.color = "black";
+    }
+    function postclick(id){
+        //请求发布信息界面
+        window.location.href = "{% url 'post' %}";
+    }
+
+</script>
+</head>
+<body>
+<div id="title">
+    <font size='20pt'><a href="{% url 'index' %}">中和营镇人和缘宾馆信息系统</a></font>
+    {% ifnotequal request.session.sessionName None %}
+        <div>
+        <a href="#exit" id="btExit">退出</a>
+        <a href="#usermod" id="btUserMod" onclick="userMod({{request.session.sessionTel}})">
+            {{request.session.sessionName}}
+        </a>
+        <p>{{request.session.sessionTel}}</p>
+        </div>
+    {% endifnotequal %}
+</div>
+
+<div id="ok">
+
+<div id="menu">
+<ul>
+  <li><a href="#room" id="room" onclick="change('room')" style="border-bottom:2px solid red;">住宿</a></li>
+  <li><a href="#food" id="food" onclick="change('food')">菜品</a></li>
+  <li><a href="#mon" id="mon" onclick="change('mon')">交易</a></li>
+  <li><a href="#about" id="about" onclick="change('about')">关于</a></li>
+</ul>
+</div>
+
+<!-- 如果用户没登录 -->
+{% ifequal request.session.sessionName None %}
+<div id="login" >
+电话号码:<input type="text" id="userName"/><br/>
+密&nbsp;&nbsp;码:<input type="password" id="userPswd"/><br/>
+<input type="button" value="登录" id="btLoginSure"/>&nbsp;
+<input type="button" value="注册" id="sign" />
+</div>
+
+<!-- 如果用户登录 -->
+{% else %}
+<div id="post" onmouseover="poston('post')" onmouseleave="postlev('post')" onclick="postclick('post')">
+    发布交易
+    <div>
+    ＋
+    </div>
+</div>    
+{% endifequal %}
+
+
+<!-- 主页内容 分栏显示网站内容-->
+<div id="content">
+<!-- 内容 -->
+{% for var in rlist %}
+<div class="item" id="item{{ forloop.counter0 }}" onmouseover="divon('item{{ forloop.counter0 }}')" onmouseleave="divlev('item{{ forloop.counter0 }}')" >
+    <div class="info">
+        <br/>
+        <p>房型:{{var.kindof}}</p><br/><br/>
+        <p>价格:{{var.price}} 元/晚</p><br/><br/>
+        <p>说明:</p><br/><br/>
+        <span>{{var.info}}</span><br/>
+    </div>
+    <img src="/static/roomimg/{{var.imgpath}}"/>
+</div>
+{% endfor %}
+
+<!-- 页脚 -->
+<div class="page" id="page">
+    <ul>
+{% for key,val in rpage.items %}
+    <li>
+    {% ifequal key 'pre' %}
+        {% ifequal val -1 %}
+            <a href='#' class="pgitem" disabled="true" style="color:gray;">&larr;</a>
+        {% else %}
+            <a href='#' class="pgitem" onclick="pgclick('/room/',{{val}})">
+                <font color="red" weight="bold" >&larr;</font>
+            </a>
+        {% endifequal%}
+    {% endifequal%}
+
+    {% ifequal key 'cur' %}
+        <a href='#' class="pgitem" style="background-color:#FFCC99;" onclick="pgclick('/room/',{{val}})">
+        [{{val}}]
+        </a>
+    {% endifequal%}
+
+    {% ifequal key 'nex' %}
+        {% ifequal val -1 %} 
+            <a href='#' class="pgitem" disabled="true" style="color:gray;">&rarr;</a>
+        {% else %}
+            <a href='#' class="pgitem" onclick="pgclick('/room/',{{val}})">
+                <font color="red" weight="bold" >&rarr;</font>
+            </a>
+        {% endifequal%}
+    {% endifequal%}
+    </li>
+{% endfor %}
+    </ul>  
+</div> <!-- page -->
+</div> <!-- content -->
+
+<!-- 右侧栏 -->
+<div id="right">
+
+{% for var in slist %}
+    <div class="ritem" id="ritem{{ forloop.counter0 }}" onmouseover="rdivon('ritem{{ forloop.counter0 }}')" onmouseleave="rdivlev('ritem{{ forloop.counter0 }}')">
+        <p>名字: {{var.name}}</p><img src="/static/speimg/{{var.imgpath}}"><br/>
+        <p>联系: {{var.tel}}</p><br/>
+        <p>介绍: {{var.info}}</p>
+    </div>
+{% endfor %}
+
+<!-- 右侧栏页脚 -->
+<div class="page" id='rpage'>
+    <ul>
+{% for key,val in spage.items %}
+    <li>
+    {% ifequal key 'pre' %}
+        {% ifequal val -1 %}
+            <a href='#' disabled="true" style="color:gray;">&larr;</a>
+        {% else %}
+            <a href='#' onclick="spgclick('/spe/',{{val}})">
+                <font color="red" weight="bold" >&larr;</font>
+            </a>
+        {% endifequal%}
+    {% endifequal%}
+
+    {% ifequal key 'cur' %}
+        <a href='#' style="background-color:#FFCC99;" onclick="spgclick('/spe/',{{val}})">
+        [{{val}}]
+        </a>
+    {% endifequal%}
+
+    {% ifequal key 'nex' %}
+        {% ifequal val -1 %} 
+            <a href='#' disabled="true" style="color:gray;">&rarr;</a>
+        {% else %}
+            <a href='#' onclick="spgclick('/spe/',{{val}})">
+                <font color="red" weight="bold" >&rarr;</font>
+            </a>
+        {% endifequal%}
+    {% endifequal%}
+    </li>
+{% endfor %}
+    </ul>
+</div> <!-- rpage -->
+</div> <!-- right -->
+
+</div> <!-- all -->
+
+<div id="foot">
+    <p>开发者:Lc_Xman</p>
+    <p>联系邮箱:2863367010@qq.com</p>
+</div>
+
+</body>
+</html>

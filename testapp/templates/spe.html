@@ -1,0 +1,59 @@
+{% for var in slist %}
+	<div class="ritem" id="ritem{{ forloop.counter0 }}" onmouseover="rdivon('ritem{{ forloop.counter0 }}')" onmouseleave="rdivlev('ritem{{ forloop.counter0 }}')">
+    	<p>名字: {{var.name}}</p><img src="/static/speimg/{{var.imgpath}}"><br/>
+    	<p>联系: {{var.tel}}</p><br/>
+    	<p>介绍: {{var.info}}</p>
+	</div>
+{% endfor %}
+
+<div class="page" id='rpage'>
+    <ul>
+{% for key,val in spage.items %}
+    <li>
+    {% ifequal key 'pre' %}
+        {% ifequal val -1 %}
+            <a href='#' disabled="true" style="color:gray;">&larr;</a>
+        {% else %}
+            <a href='#' onclick="spgclick('/spe/',{{val}})">
+                <font color="red" weight="bold" >&larr;</font>
+            </a>
+        {% endifequal%}
+    {% endifequal%}
+
+    {% ifequal key 'cur' %}
+        <a href='#' style="background-color:#FFCC99;" onclick="spgclick('/spe/',{{val}})">
+        [{{val}}]
+        </a>
+    {% endifequal%}
+
+    {% ifequal key 'nex' %}
+        {% ifequal val -1 %} 
+            <a href='#' disabled="true" style="color:gray;">&rarr;</a>
+        {% else %}
+            <a href='#' onclick="spgclick('/spe/',{{val}})">
+                <font color="red" weight="bold" >&rarr;</font>
+            </a>
+        {% endifequal%}
+    {% endifequal%}
+    </li>
+{% endfor %}
+    </ul>
+</div>
+
+
+
+<!-- 侧栏page -->
+<!--
+<div class="page" id='rpage'>
+    <ul>
+    {% for i in spage.pg_all %}
+    	{% ifequal i spage.pg_cur %}
+        <li><a href='#' style="background-color:red;" onclick="pgclick('/spe/',{{i}})">{{i}}</a></li>
+    	{% else %}
+        <li><a href='#' onclick="pgclick('/spe/',{{i}})">{{i}}</a></li>
+    	{% endifequal %}
+	{% endfor %}
+    </ul>
+</div> 
+-->
+<!-- page-->

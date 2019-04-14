@@ -1,0 +1,83 @@
+<!-- 管理员分页获取房间信息 -->
+<div class="tab" id="roomtab">
+    <div class="pagefoot" id="roompagefoot">
+            <div class="page" id="roompage">
+            {% for var in rlist %}
+                <div class="pgitem" id="roompgitem{{forloop.counter0}}">
+                    <div class="pgiteml">
+                        <div class="info">
+                            <p>房型:{{var.kindof}}</p>
+                            <p>价格:{{var.price}}元/晚</p><br/>
+                            <div>&nbsp;&nbsp;{{var.info}}</div>
+                        </div>
+                        <img src="/static/roomimg/{{var.dateuid}}.jpg" >
+                    </div>
+                    <div class="pgitemr">
+                        <div class="del" id="del{{forloop.counter0}}" 
+                        onmouseover="delover('del{{forloop.counter0}}')" 
+                        onmouseleave="dellev('del{{forloop.counter0}}')"
+                        onclick="delclick('/roomdel/',{{var.dateuid}})" >
+                        删除
+                        </div>
+                        <div class="mod" id="mod{{forloop.counter0}}"
+                        onmouseover="modover('mod{{forloop.counter0}}')" 
+                        onmouseleave="modlev('mod{{forloop.counter0}}')"
+                        onclick="modclick('/roommod/',{{var.dateuid}})" >
+                        修改
+                        </div>
+                    </div>
+                </div><!-- pgitem -->
+            {% endfor %}
+            </div><!--page -->
+
+        
+            <div class="foot" id="roomfoot">
+            {% for key,val in rpage.items %}
+                {% ifequal key 'pre' %}
+                    {% ifequal val -1 %}
+                    <div class="pg" id="roompg{{forloop.counter0}}" onmouseover="pgmouseover('roompg{{forloop.counter0}}')" onmouseleave="pgmouselev('roompg{{forloop.counter0}}')" 
+                    disabled="true" >
+                    <p><font color="gray">&larr;</font></p>
+                    </div>
+                    {% else %}
+                    <div class="pg" id="roompg{{forloop.counter0}}" onmouseover="pgmouseover('roompg{{forloop.counter0}}')" onmouseleave="pgmouselev('roompg{{forloop.counter0}}')" 
+                    onclick="pgclick('/admroom/',{{val}})" >
+                    <p>
+                        <font color="red">&larr;</font>
+                    </p>
+                    </div>
+                    {% endifequal%}
+                {% endifequal%}
+
+                {% ifequal key 'cur' %}
+                    <div class="pg" id="roompg{{forloop.counter0}}" onmouseover="pgmouseover('roompg{{forloop.counter0}}')" onmouseleave="pgmouselev('roompg{{forloop.counter0}}')" 
+                    onclick="pgclick('/admroom/',{{val}})" >
+                    <p>
+                        <font color="#FFCC99">[{{val}}]</font>
+                    </p>
+                    </div>
+                {% endifequal%}
+
+                {% ifequal key 'nex' %}
+                    {% ifequal val -1 %}
+                    <div class="pg" id="roompg{{forloop.counter0}}" onmouseover="pgmouseover('roompg{{forloop.counter0}}')" onmouseleave="pgmouselev('roompg{{forloop.counter0}}')" 
+                    disabled="true" >
+                    <p><font color="gray">&rarr;</font></p>
+                    </div>
+                    {% else %}
+                    <div class="pg" id="roompg{{forloop.counter0}}" onmouseover="pgmouseover('roompg{{forloop.counter0}}')" onmouseleave="pgmouselev('roompg{{forloop.counter0}}')" 
+                    onclick="pgclick('/admroom/',{{val}})" >
+                    <p>
+                        <font color="red">&rarr;</font>
+                    </p>
+                    </div>
+                    {% endifequal%}
+                {% endifequal%}
+            {% endfor %}
+            </div><!-- foot-->
+    </div><!--pagefoot-->
+
+    <div class="add" id="roomadd" onmouseover="addmouseover()" onmouseleave="addmouselev()"  onclick="addclick('/roomadd/')">
+        <p>＋</p>
+    </div><!-- add -->
+</div> <!-- tab -->

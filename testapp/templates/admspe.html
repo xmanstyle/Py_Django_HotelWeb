@@ -1,0 +1,85 @@
+<!-- 管理员分页获取菜品信息 -->
+<div class="tab" id="spetab">
+    <div class="pagefoot" id="spepagefoot">
+            <div class="page" id="spepage">
+            {% for var in slist %}
+                <div class="pgitem" id="spepgitem{{forloop.counter0}}">
+                    <div class="pgiteml">
+                        <div class="info">
+                            <p>名字:{{var.name}}</p>
+                            <p>联系:{{var.tel}}</p><br/>
+                            <div>&nbsp;&nbsp;{{var.info}}</div>
+                        </div> 
+                        <img src="/static/speimg/{{var.imgpath}}" >
+                    </div>
+                    <div class="pgitemr">
+                        <div class="del" id="del{{forloop.counter0}}" 
+                        onmouseover="delover('del{{forloop.counter0}}')" 
+                        onmouseleave="dellev('del{{forloop.counter0}}')"
+                        onclick="delclick('/spedel/',{{var.dateuid}})" >
+                        删除
+                        </div> <!-- {{var.dateuid}} -->
+                        <!--
+                        <div class="mod" id="mod{{forloop.counter0}}"
+                        onmouseover="modover('mod{{forloop.counter0}}')" 
+                        onmouseleave="modlev('mod{{forloop.counter0}}')"
+                        onclick="modclick('/spemod/',{{var.dateuid}})" >
+                        修改
+                        </div>
+                        -->
+                    </div>
+                </div><!-- pgitem -->
+            {% endfor %}
+            </div><!--page -->
+
+        
+            <div class="foot" id="spefoot">
+            {% for key,val in spage.items %}
+                {% ifequal key 'pre' %}
+                    {% ifequal val -1 %}
+                    <div class="pg" id="spepg{{forloop.counter0}}" onmouseover="pgmouseover('spepg{{forloop.counter0}}')" onmouseleave="pgmouselev('spepg{{forloop.counter0}}')" 
+                    disabled="true" >
+                    <p><font color="gray">&larr;</font></p>
+                    </div>
+                    {% else %}
+                    <div class="pg" id="spepg{{forloop.counter0}}" onmouseover="pgmouseover('spepg{{forloop.counter0}}')" onmouseleave="pgmouselev('spepg{{forloop.counter0}}')" 
+                    onclick="pgclick('/admspe/',{{val}})" >
+                    <p>
+                        <font color="red">&larr;</font>
+                    </p>
+                    </div>
+                    {% endifequal%}
+                {% endifequal%}
+
+                {% ifequal key 'cur' %}
+                    <div class="pg" id="spepg{{forloop.counter0}}" onmouseover="pgmouseover('spepg{{forloop.counter0}}')" onmouseleave="pgmouselev('spepg{{forloop.counter0}}')" 
+                    onclick="pgclick('/admspe/',{{val}})" >
+                    <p>
+                        <font color="#FFCC99">[{{val}}]</font>
+                    </p>
+                    </div>
+                {% endifequal%}
+
+                {% ifequal key 'nex' %}
+                    {% ifequal val -1 %}
+                    <div class="pg" id="spepg{{forloop.counter0}}" onmouseover="pgmouseover('spepg{{forloop.counter0}}')" onmouseleave="pgmouselev('spepg{{forloop.counter0}}')" 
+                    disabled="true" >
+                    <p><font color="gray">&rarr;</font></p>
+                    </div>
+                    {% else %}
+                    <div class="pg" id="spepg{{forloop.counter0}}" onmouseover="pgmouseover('spepg{{forloop.counter0}}')" onmouseleave="pgmouselev('spepg{{forloop.counter0}}')" 
+                    onclick="pgclick('/admspe/',{{val}})" >
+                    <p>
+                        <font color="red">&rarr;</font>
+                    </p>
+                    </div>
+                    {% endifequal%}
+                {% endifequal%}
+            {% endfor %}
+            </div><!-- foot-->
+    </div><!--pagefoot-->
+
+    <div class="add" id="speadd" onmouseover="addmouseover()" onmouseleave="addmouselev()"  onclick="addclick('/speadd/')">
+        <p>＋</p>
+    </div><!-- add -->
+</div> <!-- tab -->

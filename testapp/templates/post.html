@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>发布交易</title> 
+    <link rel="shortcut icon" href="/static/hotel.png" type="image/x-icon" />
+<style>
+body{
+    background-color: #f1f1f1;
+}
+textarea{
+	resize: none;
+}
+#title div{
+    float: right;
+    padding-top:10px;
+}
+#title div p{
+    float: right;
+    margin-right:30px;
+    margin-top:8px;
+    padding: 4px;
+    border:1px solid white;
+    font-weight: bold;
+    border-radius: 8px;
+    color:white;
+    background-color:#99CCCC;
+}
+#title{
+	height:80px;
+    border-bottom: 2px solid black;
+}
+#title a{
+    float: left;
+    text-decoration: none;
+    margin-top:8px;
+    padding: 2px;
+    font-weight: bold;
+    border-radius: 20px;
+    color:black;
+}
+#title a.active {
+    border: black;
+    color: white;
+}
+
+#title a:hover:not(.active) {
+    color:#CC0033;
+    border:2px solid black;
+}
+
+#title div a{
+    float: right;
+    text-decoration: none;
+    margin-right:30px;
+    margin-top:8px;
+    padding: 4px;
+    border:1px solid white;
+    font-weight: bold;
+    border-radius: 6px;
+    color:white;
+    background-color:red;
+}
+#title div a.active {
+    background-color: #CC9999;
+    color: white;
+}
+
+#title div a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+#content{
+	text-align: center;
+	margin-top:30px;
+	padding-top: 18px;
+	width:800px;
+	height:600px;
+	border-radius: 10px;
+	border: 4px solid #009966;
+}
+#fabu{
+	text-align: center;
+	width:100px;
+	border: 2px solid red;
+	margin-left: 350px;
+	margin-right: 350px;
+	margin-bottom: 30px;
+	border-radius: 8px;
+	padding: 5px;
+	font-weight: bold;
+	font-size:14pt;
+	color:red;
+}
+#content div{
+	text-align: left;
+	margin-top: 8px;
+	padding: 10px;
+	width:400px;
+	margin-left: 200px;
+	margin-right:100px;
+	border:2px solid #0099CC;
+}
+#content div input{
+	margin-top: 10px;
+	margin-left: 50px;
+}
+#content textarea{
+	margin-top: 10px;
+	margin-left: 50px;
+	font-size:12pt;
+	width:300px;
+	height:100px;
+	cols:14;
+	rows:5;
+}
+#content p{
+	display: inline;
+	color:red;
+	font-weight: bold;
+	font-size: 12pt;
+}
+#submit{
+	margin-top: 20px;
+	font-weight: bold;
+	font-size:12pt;
+	color:red;
+}
+</style>
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+    	// 退出
+      $("#btExit").click(function(){
+        $.get("{% url 'exit' %}",function(data){
+            if(data.isok == 'true'){
+                alert('退出成功!');
+                window.location.href="{% url 'index' %}";
+            }else{
+                alert('退出失败！强制退出..');
+                window.location.href="{% url 'index' %}";
+            }
+        })
+      });
+    });
+</script>
+</head>
+<body>
+<div id="title">
+    <font size='20pt'><a href="{% url 'index' %}">中和营镇人和缘宾馆信息系统</a></font>
+    {% ifnotequal request.session.sessionName None %}
+        <div>
+        <p>{{request.session.sessionTel}}</p>
+        <p>{{request.session.sessionName}}</p>
+        <a href="#exit" id="btExit">退出</a>
+        </div>
+    {% endifnotequal %}
+</div>
+<center>
+	<p id="fabu">发布交易</p>
+	<div id="content">
+		<form action="/post/" method="POST" enctype="multipart/form-data">
+			<div>
+				<p>填写说明:</p> <br/>
+			<textarea name="info" id="info">
+				
+			</textarea>
+			</div>
+			<br/>
+			<br/>
+			<div>
+				<p>发布人:</p> <br/>
+			<input type="text" readonly="readonly" name="sender" id="sender" value={{request.session.sessionName}} >
+			</div>
+			<br/>
+			<br/>
+			<div>
+				<p>联系电话:</p> <br/>
+			<input type="text" readonly="readonly" name="tel" id="tel" value={{request.session.sessionTel}} >
+			</div>
+			<br/>
+			<br/>
+			<div>
+				<p>上传照片:</p> <br/>
+			<input type="file" name="img" id="img"/>
+			</div>
+			<input type="submit" value="发布" id="submit"/><br/>
+			<span><font color="red">{{errMsg}}</font></span>
+		</form>
+	</div>
+</center>
+</body>
+</html>

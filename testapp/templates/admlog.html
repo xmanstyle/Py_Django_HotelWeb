@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>后台管理</title>
+    <link rel="shortcut icon" href="/static/hotel.png" type="image/x-icon" />
+<style>
+body{
+    padding-top: 20px;
+    background-color: #99CC99;
+}
+#title{
+    padding-bottom: 20px;
+    border-bottom: 2px solid black;
+}
+#title font{
+    border:2px solid white;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size:20pt;
+    padding:8px;
+}
+.box{
+    padding-top: 50px;
+    width:500px;
+    height:300px; 
+    margin:0 auto; 
+    margin-top: 100px;
+    border:2px solid #ccc; 
+    background:#000; 
+    filter:alpha(opacity:40); 
+    opacity:0.4;  
+    -moz-opacity:0.4;
+    -khtml-opacity: 0.5;
+}
+
+.box div{
+    padding-top: 20px;
+    padding-left: 50px;
+}
+.box p{
+    display: inline;
+    width:100px;
+    margin-left: 50px;
+    border:2px solid white;
+    border-radius: 5px;
+    color:white;
+    font-weight: bold;
+    font-size: 12pt;
+    padding: 5px;   
+}
+.box input{
+    margin-top: 10px;
+    margin-left: 90px;
+}
+#submit{
+    margin-top: 20px;
+    margin-left: 220px;
+    margin-right: 100px;
+    background-color: white;
+    color:red;
+    font-weight: bold;
+    font-size:13pt;
+}
+#errMsg{
+    color:red;
+    font-size:13pt;
+    font-weight: bold;
+    margin-left: 90px;
+}
+
+</style>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+
+<div id="title">
+    <font >人和缘宾馆-后台管理登录入口</font>
+</div>
+
+<div class="box">
+    <form action='/rhyadm/' method='POST'>
+        <div>
+        <p>
+            管理员名字:
+        </p><br/><br/>
+        <input type="text" name="admName" >
+        </div>
+        <div>
+        <p>
+            管理员密码:
+        </p><br/><br/>
+        <input type="password" name="admPswd" >
+        </div>
+        <input type="submit" id="submit" value="登录" ><br/><br/>
+        <span id="errMsg">{{errMsg}}</span>
+    </form>
+</div>
+
+</body>
+</html>

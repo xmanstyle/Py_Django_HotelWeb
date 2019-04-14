@@ -1,0 +1,86 @@
+ <!-- 管理员分页获取用户信息 -->
+<div class="tab" id="usertab">
+    <div class="pagefoot" id="userpagefoot">
+            <div class="page" id="userpage">
+            {% for var in ulist %}
+                <div class="pgitem" id="userpgitem{{forloop.counter0}}">
+                    <div class="pgiteml">
+                        <div class="info">
+                            <p>名字:{{var.name}}</p>
+                            <p>电话:{{var.tel}}</p><br/>
+                            <p>邮箱:{{var.email}}</p><br/>
+                            <p>地址:{{var.address}}</p><br/>
+                        </div>
+                        <img src="/static/zjc.jpg">
+                    </div>
+                    <div class="pgitemr">
+                        <div class="del" id="del{{forloop.counter0}}" 
+                        onmouseover="delover('del{{forloop.counter0}}')" 
+                        onmouseleave="dellev('del{{forloop.counter0}}')"
+                        onclick="delclick('/userdel/',{{var.tel}})" > 
+                        删除
+                        </div> <!-- {{var.dateuid}} -->
+                        <!--
+                        <div class="mod" id="mod{{forloop.counter0}}"
+                        onmouseover="modover('mod{{forloop.counter0}}')" 
+                        onmouseleave="modlev('mod{{forloop.counter0}}')"
+                        onclick="modclick('/usermod/',{{forloop.counter0}})" >
+                        修改
+                        </div>-->
+                    </div>
+                </div><!-- pgitem -->
+            {% endfor %}
+            </div><!--page -->
+
+        
+            <div class="foot" id="userfoot">
+            {% for key,val in upage.items %}
+                {% ifequal key 'pre' %}
+                    {% ifequal val -1 %}
+                    <div class="pg" id="userpg{{forloop.counter0}}" onmouseover="pgmouseover('userpg{{forloop.counter0}}')" onmouseleave="pgmouselev('userpg{{forloop.counter0}}')" 
+                    disabled="true" >
+                    <p><font color="gray">&larr;</font></p>
+                    </div>
+                    {% else %}
+                    <div class="pg" id="userpg{{forloop.counter0}}" onmouseover="pgmouseover('userpg{{forloop.counter0}}')" onmouseleave="pgmouselev('userpg{{forloop.counter0}}')" 
+                    onclick="pgclick('/admuser/',{{val}})" >
+                    <p>
+                        <font color="red">&larr;</font>
+                    </p>
+                    </div>
+                    {% endifequal%}
+                {% endifequal%}
+
+                {% ifequal key 'cur' %}
+                    <div class="pg" id="userpg{{forloop.counter0}}" onmouseover="pgmouseover('userpg{{forloop.counter0}}')" onmouseleave="pgmouselev('userpg{{forloop.counter0}}')" 
+                    onclick="pgclick('/admuser/',{{val}})" >
+                    <p>
+                        <font color="#FFCC99">[{{val}}]</font>
+                    </p>
+                    </div>
+                {% endifequal%}
+
+                {% ifequal key 'nex' %}
+                    {% ifequal val -1 %}
+                    <div class="pg" id="userpg{{forloop.counter0}}" onmouseover="pgmouseover('userpg{{forloop.counter0}}')" onmouseleave="pgmouselev('userpg{{forloop.counter0}}')" 
+                    disabled="true" >
+                    <p><font color="gray">&rarr;</font></p>
+                    </div>
+                    {% else %}
+                    <div class="pg" id="userpg{{forloop.counter0}}" onmouseover="pgmouseover('userpg{{forloop.counter0}}')" onmouseleave="pgmouselev('userpg{{forloop.counter0}}')" 
+                    onclick="pgclick('/admuser/',{{val}})" >
+                    <p>
+                        <font color="red">&rarr;</font>
+                    </p>
+                    </div>
+                    {% endifequal%}
+                {% endifequal%}
+            {% endfor %}
+            </div><!-- foot-->
+    </div><!--pagefoot-->
+
+	<!--
+    <div class="add" id="useradd" onmouseover="addmouseover()" onmouseleave="addmouselev()"  onclick="addclick('/useradd/')">
+        <p>＋</p>
+    </div>--><!-- add -->
+</div> <!-- tab -->

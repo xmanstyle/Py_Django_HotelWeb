@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>人和缘宾馆信息系统后台管理</title>
+    <link rel="shortcut icon" href="/static/hotel.png" type="image/x-icon" />
+<style>
+#title div{
+    float: right;
+    padding-top:10px;
+}
+#title div p{
+    float: right;
+    margin-right:30px;
+    margin-top:8px;
+    padding: 4px;
+    border:1px solid white;
+    font-weight: bold;
+    border-radius: 8px;
+    color:white;
+    background-color:#99CCCC;
+}
+#title{
+    height:80px;
+    border-bottom: 2px solid black;
+}
+#title a{
+    float: left;
+    text-decoration: none;
+    margin-top:8px;
+    padding: 2px;
+    font-weight: bold;
+    border-radius: 20px;
+    color:#0099CC;
+    background-color:#FFCC99;
+}
+#title a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#title a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+#title div a{
+    float: right;
+    margin-right:30px;
+    margin-top:8px;
+    padding: 2px;
+    border:1px solid white;
+    font-weight: bold;
+    border-radius: 2px;
+    color:white;
+    background-color:red;
+}
+#title div a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#title div a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+#box{
+    width:600px;
+    height:400px;
+    margin-top:50px;
+    padding: 40px;
+    border:2px solid white;
+    background-color:#CCCC99;
+}
+#box .text{
+    color:white;
+    font-weight: bold;
+    text-align: right;
+    font-size:12pt;
+    padding: 0px;
+}
+#box table{
+    padding-left:100px;
+    width:500px;
+    height: 300px;
+}
+
+
+</style>
+
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
+     $(document).ready(function(){
+
+        $("#sign").click(function(){
+        $.ajax({
+            type:"POST",
+            url:"{% url 'admaddmod' %}",
+            datatype:"json",
+            data:{
+                'name':$("#name").val(),
+                'tel':$("#tel").val(),
+                'pswd':$("#pswd").val(),
+                'isadd':$("#isadd").val()
+            },
+            success:function(data){
+                if(data.isOk == "true"){
+                    alert("注册/更新 成功！");
+                    window.location.href = "{% url 'rhyadm' %}";
+                }else{
+                    errmsg = data.msg;
+                    alert("注册/更新 失败！"+errmsg);
+                    $("#msg").html = "<font color='red'>"+errmsg+"</font>";
+                }
+            },
+        });
+      });
+
+    });
+</script>
+<body>
+
+<div id="title">
+    <font size='20pt'><a href="{% url 'rhyadm' %}">后台主页</a></font>
+    {% ifnotequal request.session.admName None %}
+        <div>
+        <p>{{request.session.admName}}</p>
+        <a href="#admexit" id="btExit">退出</a>
+        </div>
+    {% endifnotequal %}
+</div>
+
+<center>
+<div id="box">
+    <form action='#' method='POST'>
+    <!-- 注意坑
+    <input id="isadd" name="isadd" type="hidden" value={{isadd}} /> 后面的/会被加到内容中
+    <input id="isadd" name="isadd" type="hidden" value="{{isadd}}" > 这种则不会
+    -->
+        <input id="isadd" name="isadd" type="hidden" value={{isadd}} >
+        <table>
+        <tr>
+        <td class="text">用户名:</td>
+        <td><input type="text" id="name" value={{var.name}} ></td>
+        </tr>
+
+        <tr>
+        <td class="text">手&nbsp;机:</td>
+        <td><input type="text" id="tel" value={{var.tel}} ></td>
+        </tr>
+
+        <tr>
+        <td class="text">密&nbsp;码:</td>
+        <td><input type="password" id="pswd" value={{var.pswd}} ></td>
+        </tr>
+
+        <tr><td id='msg'></td></tr>
+    </table>
+    </form>
+    <input type="button" id="sign" value="注册/更新" />
+</div>
+</center>
+
+</body>
+</head>

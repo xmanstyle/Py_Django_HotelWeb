@@ -1,0 +1,58 @@
+{% for var in mlist %}
+<div class="mitem" id="mitem{{ forloop.counter0 }}" onmouseover="mdivon('mitem{{ forloop.counter0 }}')" onmouseleave="mdivlev('mitem{{ forloop.counter0 }}')" >
+    <div class="finfo">
+        <br/>
+        <p><a href='/info/?tel={{var.tel}}'>发布人:{{var.sender}}</a></p>&nbsp;
+        <p><font color="red">{{var.time_str}}</font></p><br/><br/>
+        <p>电话:{{var.tel}}</p><br/><br/>
+        <p>说明:</p><br/><br/>
+        <span>{{var.info}}</span><br/>
+    </div>
+    <img src="/static/postimg/{{var.imgpath}}"/>
+</div>
+{% endfor %}
+
+<div class="page" id="page">
+    <ul>
+
+{% for key,val in mpage.items %}
+    <li>
+    {% ifequal key 'pre' %}
+        {% ifequal val -1 %}
+            <a href='#' class="mpgitem" disabled="true" style="color:gray;">&larr;</a>
+        {% else %}
+            <a href='#' class="mpgitem" onclick="pgclick('/mon/',{{val}})">
+                <font color="red" weight="bold" >&larr;</font>
+            </a>
+        {% endifequal%}
+    {% endifequal%}
+
+    {% ifequal key 'cur' %}
+        <a href='#' class="mpgitem" style="background-color:#FFCC99;" onclick="pgclick('/mon/',{{val}})">
+        [{{val}}]
+        </a>
+    {% endifequal%}
+
+    {% ifequal key 'nex' %}
+        {% ifequal val -1 %} 
+            <a href='#' class="mpgitem" disabled="true" style="color:gray;">&rarr;</a>
+        {% else %}
+            <a href='#' class="mpgitem" onclick="pgclick('/mon/',{{val}})">
+                <font color="red" weight="bold" >&rarr;</font>
+            </a>
+        {% endifequal%}
+    {% endifequal%}
+    </li>
+{% endfor %}
+<!--   
+{% for i in mpage.pg_all %}
+    {% ifequal i mpage.pg_cur %}
+        <li><a href='#' class="mpgitem" style="background-color:red;" onclick="pgclick('/mon/',{{i}})">{{i}}</a></li>
+    {% else %}
+        <li><a href='#' class="mpgitem" onclick="pgclick('/mon/',{{i}})">{{i}}</a></li>
+    {% endifequal %}
+{% endfor %}
+-->
+    </ul>  
+</div>
+

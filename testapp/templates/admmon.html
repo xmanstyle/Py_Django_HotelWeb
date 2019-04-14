@@ -1,0 +1,84 @@
+<!-- 管理员分页获取交易信息 -->
+<div class="tab" id="montab">
+    <div class="pagefoot" id="monpagefoot">
+            <div class="page" id="monpage">
+            {% for var in mlist %}
+                <div class="pgitem" id="monpgitem{{forloop.counter0}}">
+                    <div class="pgiteml">
+                        <div class="info">
+                            <p>发布者:{{var.sender}}</p>
+                            <p>电话:{{var.tel}}</p><br/>
+                            <div>&nbsp;&nbsp;{{var.info}}</div>
+                        </div>
+                        <img src="/static/postimg/{{var.imgpath}}" >
+                    </div>
+                    <div class="pgitemr"> 
+                        <div class="del" id="del{{forloop.counter0}}" 
+                        onmouseover="delover('del{{forloop.counter0}}')" 
+                        onmouseleave="dellev('del{{forloop.counter0}}')"
+                        onclick="delclick('/mondel/',{{var.time_sec}})" >
+                        删除
+                        </div> <!-- {{var.dateuid}} -->
+                        <!--
+                        <div class="mod" id="mod{{forloop.counter0}}"
+                        onmouseover="modover('mod{{forloop.counter0}}')" 
+                        onmouseleave="modlev('mod{{forloop.counter0}}')"
+                        onclick="modclick('/monmod/',{{forloop.counter0}})" >
+                        修改
+                        </div>-->
+                    </div>
+                </div><!-- pgitem -->
+            {% endfor %}
+            </div><!--page -->
+
+        
+            <div class="foot" id="monfoot">
+            {% for key,val in mpage.items %}
+                {% ifequal key 'pre' %}
+                    {% ifequal val -1 %}
+                    <div class="pg" id="monpg{{forloop.counter0}}" onmouseover="pgmouseover('monpg{{forloop.counter0}}')" onmouseleave="pgmouselev('monpg{{forloop.counter0}}')" 
+                    disabled="true" >
+                    <p><font color="gray">&larr;</font></p>
+                    </div>
+                    {% else %}
+                    <div class="pg" id="monpg{{forloop.counter0}}" onmouseover="pgmouseover('monpg{{forloop.counter0}}')" onmouseleave="pgmouselev('monpg{{forloop.counter0}}')" 
+                    onclick="pgclick('/admmon/',{{val}})" >
+                    <p>
+                        <font color="red">&larr;</font>
+                    </p>
+                    </div>
+                    {% endifequal%}
+                {% endifequal%}
+
+                {% ifequal key 'cur' %}
+                    <div class="pg" id="monpg{{forloop.counter0}}" onmouseover="pgmouseover('monpg{{forloop.counter0}}')" onmouseleave="pgmouselev('monpg{{forloop.counter0}}')" 
+                    onclick="pgclick('/admmon/',{{val}})" >
+                    <p>
+                        <font color="#FFCC99">[{{val}}]</font>
+                    </p>
+                    </div>
+                {% endifequal%}
+
+                {% ifequal key 'nex' %}
+                    {% ifequal val -1 %}
+                    <div class="pg" id="monpg{{forloop.counter0}}" onmouseover="pgmouseover('monpg{{forloop.counter0}}')" onmouseleave="pgmouselev('monpg{{forloop.counter0}}')" 
+                    disabled="true" >
+                    <p><font color="gray">&rarr;</font></p>
+                    </div>
+                    {% else %}
+                    <div class="pg" id="monpg{{forloop.counter0}}" onmouseover="pgmouseover('monpg{{forloop.counter0}}')" onmouseleave="pgmouselev('monpg{{forloop.counter0}}')" 
+                    onclick="pgclick('/admmon/',{{val}})" >
+                    <p>
+                        <font color="red">&rarr;</font>
+                    </p>
+                    </div>
+                    {% endifequal%}
+                {% endifequal%}
+            {% endfor %}
+            </div><!-- foot-->
+    </div><!--pagefoot-->
+    <!--
+    <div class="add" id="monadd" onmouseover="addmouseover()" onmouseleave="addmouselev()"  onclick="addclick('/monadd/')">
+        <p>＋</p>
+    </div> --> <!-- add -->
+</div> <!-- tab -->

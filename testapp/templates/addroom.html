@@ -1,0 +1,28 @@
+<!-- 管理员添加房间信息 -->
+<div class="tab" id="roomform"> 
+    {% ifnotequal errMsg None %}
+        {% ifequal errMsg 'ok' %}
+            <div style="margin-top: 100px;margin-left: 100px;font-size:13pt;font-weight: bold;color:red;">
+            <p>上传成功！</p>
+            </div>
+        {% else %}
+            <form action="/roomadd/" method="POST" enctype="multipart/form-data">
+                <span><font color="red">{{errMsg}}</font></span>
+                <div><p>房型:</p> <input type="text" id="kindof" name="kindof" /></div>
+                <div><p>价格:</p> <input type="text" id="price" name="price" /></div>
+                <div><p>说明:</p><br/> <textarea id="info" name="info"></textarea></div>
+                <div><p>图片:</p> <input type="file" id="img" name="img" /><br/></div>
+                <div class="submit" onmouseover="submitover()" onmouseleave="submitlev()" onclick="submit('/roomadd/')">上传</div>
+            </form>
+        {% endifequal %}
+    {% else  %}
+        <form action="/roomadd/" method="POST" enctype="multipart/form-data">
+            <div><p>房型:</p> <input type="text" id="kindof" name="kindof" /></div>
+            <div><p>价格:</p> <input type="text" id="price" name="price" /></div>
+            <div><p>说明:</p><br/> <textarea id="info" name="info"></textarea></div>
+            <div><p>图片:</p> <input type="file" id="img" name="img" /><br/></div>
+            <div class="submit" onmouseover="submitover()" onmouseleave="submitlev()" onclick="submit('/roomadd/')">上传</div>
+        </form>
+    {% endifnotequal %}
+</div> 
+

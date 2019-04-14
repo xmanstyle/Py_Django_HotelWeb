@@ -1,0 +1,60 @@
+{% for var in rlist %}
+<div class="item" id="item{{ forloop.counter0 }}" onmouseover="divon('item{{ forloop.counter0 }}')" onmouseleave="divlev('item{{ forloop.counter0 }}')" >
+    <div class="info">
+        <br/>
+        <p>房型:{{var.kindof}}</p><br/><br/>
+        <p>价格:{{var.price}} 元/晚</p><br/><br/>
+        <p>说明:</p><br/><br/>
+        <span>{{var.info}}</span><br/>
+    </div>
+    <img src="/static/roomimg/{{var.imgpath}}"/>
+</div>
+{% endfor %}
+
+<div class="page" id="page">
+    <ul>
+{% for key,val in rpage.items %}
+    <li>
+    {% ifequal key 'pre' %}
+        {% ifequal val -1 %}
+            <a href='#' class="pgitem" disabled="true" style="color:gray;">&larr;</a>
+        {% else %}
+            <a href='#' class="pgitem" onclick="pgclick('/room/',{{val}})">
+                <font color="red" weight="bold" >&larr;</font>
+            </a>
+        {% endifequal%}
+    {% endifequal%}
+
+    {% ifequal key 'cur' %}
+        <a href='#' class="pgitem" style="background-color:#FFCC99;" onclick="pgclick('/room/',{{val}})">
+        [{{val}}]
+        </a>
+    {% endifequal%}
+
+    {% ifequal key 'nex' %}
+        {% ifequal val -1 %} 
+            <a href='#' class="pgitem" disabled="true" style="color:gray;">&rarr;</a>
+        {% else %}
+            <a href='#' class="pgitem" onclick="pgclick('/room/',{{val}})">
+                <font color="red" weight="bold" >&rarr;</font>
+            </a>
+        {% endifequal%}
+    {% endifequal%}
+    </li>
+{% endfor %}
+    </ul>  
+</div>
+
+<!--
+<div class="page" id="page">
+    <ul>
+{% for i in rpage.pg_all %}
+    {% ifequal i rpage.pg_cur %}
+        <li><a href='#' class="pgitem" style="background-color:red;" onclick="pgclick('/room/',{{i}})">{{i}}</a></li>
+    {% else %}
+        <li><a href='#' class="pgitem" onclick="pgclick('/room/',{{i}})">{{i}}</a></li>
+    {% endifequal %}
+{% endfor %}
+    </ul>  
+</div>
+-->

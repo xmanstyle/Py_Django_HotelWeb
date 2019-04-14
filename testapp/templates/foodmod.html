@@ -1,0 +1,29 @@
+<div class="tab" id="foodform"> 
+    {% ifnotequal errMsg None %}
+        {% ifequal errMsg 'ok' %} <!-- 更改成功! -->
+            <div style="margin-top: 100px;margin-left: 100px;font-size:13pt;font-weight: bold;color:red;">
+            <p>更改成功！</p>
+            </div>
+        {% else %} <!-- 更改错误! -->
+            <form action="/foodmod/" method="POST" enctype="multipart/form-data">
+                <span><font color="red">{{errMsg}}</font></span>
+                <input type="hidden" name="dateuid" id="dateuid" value={{var.dateuid}} />
+                <div><p>菜品:</p> <input type="text" id="kindof" name="kindof" value={{var.kindof}} /></div>
+                <div><p>价格:</p> <input type="text" id="price" name="price" value={{var.price}} /></div>
+                <div><p>说明:</p><br/> <textarea id="info" name="info" >{{var.info}}</textarea></div>
+                <div><p>图片:</p> <input type="file" id="img" name="img" /><img width="50px" height="50px" src="/static/foodimg/{{var.dateuid}}.jpg"/></div>
+                <div class="submit" onmouseover="submitover()" onmouseleave="submitlev()" onclick="foodmodsubmit('/foodmod/')">更改</div>
+            </form>
+        {% endifequal %}
+    {% else  %} <!-- 请求更改! -->
+            <form action="/foodmod/" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="dateuid" id="dateuid" value={{var.dateuid}} />
+                <div><p>菜品:</p> <input type="text" id="kindof" name="kindof" value={{var.kindof}} /></div>
+                <div><p>价格:</p> <input type="text" id="price" name="price" value={{var.price}} /></div>
+                <div><p>说明:</p><br/> <textarea id="info" name="info">{{var.info}}</textarea></div>
+                <div><p>图片:</p> <input type="file" id="img" name="img" /><img width="50px" height="50px" src="/static/foodimg/{{var.dateuid}}.jpg"/></div>
+                <div class="submit" onmouseover="submitover()" onmouseleave="submitlev()" onclick="foodmodsubmit('/foodmod/')">更改</div>
+            </form>
+    {% endifnotequal %}
+</div> 
+

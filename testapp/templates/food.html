@@ -1,0 +1,59 @@
+{% for var in flist %}
+<div class="fitem" id="fitem{{ forloop.counter0 }}" onmouseover="fdivon('fitem{{ forloop.counter0 }}')" onmouseleave="fdivlev('fitem{{ forloop.counter0 }}')" >
+    <div class="finfo">
+        <br/>
+        <p>菜品:{{var.kindof}}</p><br/><br/>
+        <p>价格:{{var.price}} 元/盘</p><br/><br/>
+        <p>说明:</p><br/><br/>
+        <span>{{var.info}}</span><br/>
+    </div>
+    <img src="/static/foodimg/{{var.imgpath}}"/>
+</div>
+{% endfor %}
+
+<div class="page" id="page">
+    <ul>
+{% for key,val in fpage.items %}
+    <li>
+    {% ifequal key 'pre' %}
+        {% ifequal val -1 %}
+            <a href='#' class="fpgitem" disabled="true" style="color:gray;">&larr;</a>
+        {% else %}
+            <a href='#' class="fpgitem" onclick="pgclick('/food/',{{val}})">
+                <font color="red" weight="bold" >&larr;</font>
+            </a>
+        {% endifequal%}
+    {% endifequal%}
+
+    {% ifequal key 'cur' %}
+        <a href='#' class="fpgitem" style="background-color:#FFCC99;" onclick="pgclick('/food/',{{val}})">
+        [{{val}}]
+        </a>
+    {% endifequal%}
+
+    {% ifequal key 'nex' %}
+        {% ifequal val -1 %} 
+            <a href='#' class="fpgitem" disabled="true" style="color:gray;">&rarr;</a>
+        {% else %}
+            <a href='#' class="fpgitem" onclick="pgclick('/food/',{{val}})">
+                <font color="red" weight="bold" >&rarr;</font>
+            </a>
+        {% endifequal%}
+    {% endifequal%}
+    </li>
+{% endfor %}
+<!--
+{% for i in fpage.pg_all %}
+    {% ifequal i fpage.pg_cur %}
+        <li><a href='#' class="fpgitem" style="background-color:red;" onclick="pgclick('/food/',{{i}})">{{i}}</a></li>
+    {% else %}
+        <li><a href='#' class="fpgitem" onclick="pgclick('/food/',{{i}})">{{i}}</a></li>
+    {% endifequal %}
+{% endfor %}
+-->
+    </ul>  
+</div>
+
+<!--
+Jquery ajax分页 请求菜品数据
+-->

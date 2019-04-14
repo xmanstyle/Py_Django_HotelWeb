@@ -1,0 +1,83 @@
+<!-- 管理员分页获取菜品信息 -->
+<div class="tab" id="foodtab">
+    <div class="pagefoot" id="foodpagefoot">
+            <div class="page" id="foodpage">
+            {% for var in flist %}
+                <div class="pgitem" id="foodpgitem{{forloop.counter0}}">
+                    <div class="pgiteml">
+                        <div class="info">
+                            <p>菜品:{{var.kindof}}</p>
+                            <p>价格:{{var.price}}元/盘</p><br/>
+                            <div>&nbsp;&nbsp;{{var.info}}</div>
+                        </div> 
+                        <img src="/static/foodimg/{{var.dateuid}}.jpg" >
+                    </div>
+                    <div class="pgitemr">
+                        <div class="del" id="del{{forloop.counter0}}" 
+                        onmouseover="delover('del{{forloop.counter0}}')" 
+                        onmouseleave="dellev('del{{forloop.counter0}}')"
+                        onclick="delclick('/fooddel/',{{var.dateuid}})" >
+                        删除
+                        </div> <!-- {{var.dateuid}} -->
+                        <div class="mod" id="mod{{forloop.counter0}}"
+                        onmouseover="modover('mod{{forloop.counter0}}')" 
+                        onmouseleave="modlev('mod{{forloop.counter0}}')"
+                        onclick="modclick('/foodmod/',{{var.dateuid}})" >
+                        修改
+                        </div>
+                    </div>
+                </div><!-- pgitem -->
+            {% endfor %}
+            </div><!--page -->
+
+        
+            <div class="foot" id="foodfoot">
+            {% for key,val in fpage.items %}
+                {% ifequal key 'pre' %}
+                    {% ifequal val -1 %}
+                    <div class="pg" id="foodpg{{forloop.counter0}}" onmouseover="pgmouseover('foodpg{{forloop.counter0}}')" onmouseleave="pgmouselev('foodpg{{forloop.counter0}}')" 
+                    disabled="true" >
+                    <p><font color="gray">&larr;</font></p>
+                    </div>
+                    {% else %}
+                    <div class="pg" id="foodpg{{forloop.counter0}}" onmouseover="pgmouseover('foodpg{{forloop.counter0}}')" onmouseleave="pgmouselev('foodpg{{forloop.counter0}}')" 
+                    onclick="pgclick('/admfood/',{{val}})" >
+                    <p>
+                        <font color="red">&larr;</font>
+                    </p>
+                    </div>
+                    {% endifequal%}
+                {% endifequal%}
+
+                {% ifequal key 'cur' %}
+                    <div class="pg" id="foodpg{{forloop.counter0}}" onmouseover="pgmouseover('foodpg{{forloop.counter0}}')" onmouseleave="pgmouselev('foodpg{{forloop.counter0}}')" 
+                    onclick="pgclick('/admfood/',{{val}})" >
+                    <p>
+                        <font color="#FFCC99">[{{val}}]</font>
+                    </p>
+                    </div>
+                {% endifequal%}
+
+                {% ifequal key 'nex' %}
+                    {% ifequal val -1 %}
+                    <div class="pg" id="foodpg{{forloop.counter0}}" onmouseover="pgmouseover('foodpg{{forloop.counter0}}')" onmouseleave="pgmouselev('foodpg{{forloop.counter0}}')" 
+                    disabled="true" >
+                    <p><font color="gray">&rarr;</font></p>
+                    </div>
+                    {% else %}
+                    <div class="pg" id="foodpg{{forloop.counter0}}" onmouseover="pgmouseover('foodpg{{forloop.counter0}}')" onmouseleave="pgmouselev('foodpg{{forloop.counter0}}')" 
+                    onclick="pgclick('/admfood/',{{val}})" >
+                    <p>
+                        <font color="red">&rarr;</font>
+                    </p>
+                    </div>
+                    {% endifequal%}
+                {% endifequal%}
+            {% endfor %}
+            </div><!-- foot-->
+    </div><!--pagefoot-->
+
+    <div class="add" id="foodadd" onmouseover="addmouseover()" onmouseleave="addmouselev()"  onclick="addclick('/foodadd/')">
+        <p>＋</p>
+    </div><!-- add -->
+</div> <!-- tab -->
