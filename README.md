@@ -1,1 +1,1 @@
-# binguan_web
+# Hotel showup website by Python framework-Django
