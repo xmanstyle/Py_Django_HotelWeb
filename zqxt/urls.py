@@ -37,7 +37,7 @@ urlpatterns = [
     url(r'^info/',info,name='info'),#查看个人信息
 
     # 以下是管理员的操作
-    # 获取管理数据
+    # 获取管理数据 
     url(r'^rhyadm/',rhyadm,name='rhyadm'),#管理登录界面
     url(r'^admroom/',admroom,name='admroom'),#获取房间分页数据
     url(r'^admfood/',admfood,name='admfood'),#获取食物分页数据

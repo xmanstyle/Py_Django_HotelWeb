@@ -25,7 +25,7 @@ SECRET_KEY = 'q=pp$j2o^8230nx%gij&xmu@@cth1u6#)4f8e6(q4&u1b@du@q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0','*','localhost',]
+ALLOWED_HOSTS = ['0.0.0.0','*','localhost','127.0.0.1']
 
 
 # Application definition
@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'zqxt.wsgi.application'
 
 DATABASES = {
     'default':{'ENGINE':'django.db.backends.mysql',
-               'NAME':'zqxt',
+               'NAME':'zxqt',
                'USER':'root',
                'PASSWORD':'root',
                'HOST':'127.0.0.1',
